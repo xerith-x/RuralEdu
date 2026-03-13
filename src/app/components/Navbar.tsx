@@ -46,6 +46,8 @@ function NavLink({
 export function Navbar({ isOnline, user, onLogout }: NavbarProps) {
   const navigate = useNavigate();
   const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const teacherTab = searchParams.get("tab") || "analytics";
 
   function handleLogout() {
     clearSession();
@@ -98,9 +100,24 @@ export function Navbar({ isOnline, user, onLogout }: NavbarProps) {
         {/* Teacher nav */}
         {user?.role === "teacher" && (
           <>
-            <NavLink to="/teacher-dashboard">Analytics</NavLink>
-            <NavLink to="/teacher-dashboard">Manage Students</NavLink>
-            <NavLink to="/teacher-dashboard">Content Library</NavLink>
+            <NavLink
+              to="/teacher-dashboard?tab=analytics"
+              highlight={location.pathname === "/teacher-dashboard" && teacherTab === "analytics"}
+            >
+              Analytics
+            </NavLink>
+            <NavLink
+              to="/teacher-dashboard?tab=students"
+              highlight={location.pathname === "/teacher-dashboard" && teacherTab === "students"}
+            >
+              Manage Students
+            </NavLink>
+            <NavLink
+              to="/teacher-dashboard?tab=library"
+              highlight={location.pathname === "/teacher-dashboard" && teacherTab === "library"}
+            >
+              Content Library
+            </NavLink>
           </>
         )}
 

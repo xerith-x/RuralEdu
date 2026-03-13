@@ -53,6 +53,29 @@ export function TeacherUploadPage() {
     setIsLoading(true);
     // TODO: POST to /api/teacher/courses with form data
     await new Promise((r) => setTimeout(r, 1000));
+
+    // Store a lightweight record so it appears in the teacher dashboard history
+    try {
+      const storedRaw = localStorage.getItem("teacherUploads") || "[]";
+      const stored = JSON.parse(storedRaw) as {
+        id: string;
+        title: string;
+        subject: string;
+        uploadedAt: string;
+        downloads: number;
+      }[];
+      const newUpload = {
+        id: `local-${Date.now()}`,
+        title: title || "Untitled course",
+        subject: subject || "General",
+        uploadedAt: new Date().toISOString().slice(0, 10),
+        downloads: 0,
+      };
+      localStorage.setItem("teacherUploads", JSON.stringify([newUpload, ...(Array.isArray(stored) ? stored : [])]));
+    } catch {
+      // ignore storage errors in demo mode
+    }
+
     setIsLoading(false);
     setSubmitted(true);
   }

@@ -64,7 +64,7 @@ export function Root() {
           style={{ backgroundColor: "#e0f2fe", borderBottom: "1px solid #bae6fd" }}
         >
           <span>⚠️</span>
-          <p style={{ fontSize: "0.85rem", color: "#713f12" }}>
+          <p style={{ fontSize: "0.85rem", color: "#0369a1" }}>
             You're offline. Only downloaded content is accessible.
           </p>
         </div>
