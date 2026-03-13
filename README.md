@@ -1,7 +1,7 @@
 
   # Complete current task
 
-  This is a React + Vite code bundle for the "Complete current task" RuralEdu demo app.
+  This is a React + Vite code bundle for the "Complete current task" RuralEdu demo website.
 
   ## Running the code
 
